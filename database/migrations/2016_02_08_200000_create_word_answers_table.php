@@ -15,6 +15,7 @@ class CreateWordAnswersTable extends Migration
     {
         Schema::create('word_answers', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('content');
             $table->integer('word_id')->unsigned();
             $table->smallInteger('correct');
             $table->timestamp('created_at');

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests;
 use Illuminate\Http\Request;
+use App\Models\Activity;
 
 class HomeController extends Controller
 {
@@ -25,7 +26,13 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home', ['pageTitle' => 'Dashboard']);
+        $learnedWords = 0;
+        $activities = Activity::getByAuthUser();
+        return view('home', [
+            'pageTitle' => 'Dashboard',
+            'learnedWords' => $learnedWords,
+            'activities' => $activities
+        ]);
     }
 
     /**
@@ -35,6 +42,9 @@ class HomeController extends Controller
      */
     public function welcome()
     {
+        if (auth()->check()) {
+            return redirect('home');
+        }
         return view('welcome', ['pageTitle' => 'Welcome']);
     }
 

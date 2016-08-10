@@ -18,6 +18,11 @@ Route::get('/', 'HomeController@welcome');
 Route::group(['middleware' => 'auth'], function() {
     Route::get('/logout', 'Auth\\AuthController@logout');
     Route::get('/home', 'HomeController@index');
+
+    Route::controller('category', 'CategoryController');
+    Route::controller('word', 'WordController');
+    Route::resource('lesson', 'LessonController');
+    Route::resource('result', 'ResultController');
 });
 
 Route::get('login', 'Auth\\AuthController@getLogin');
