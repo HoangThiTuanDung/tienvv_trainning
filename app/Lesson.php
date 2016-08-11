@@ -20,5 +20,10 @@ class Lesson extends Model
     {
         return $this->belongsTo(Category::class);
     }
+    
+    public static function getTotalQuestions()
+    {
+        return env('LESSON_TOTAL_QUESTIONS', 20);
+    }
 
 }
